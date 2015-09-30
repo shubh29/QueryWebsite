@@ -18,8 +18,6 @@ from bs4 import BeautifulSoup
 
 fail = False
 url = "http://www.timeanddate.com/calendar/autumnal-equinox.html"
-#if "http://" not in url[0:7]:
- #  url = "http://"+url
 print( "Attempting to open ", url)
 try:
    linecount=0
@@ -33,6 +31,10 @@ tokenizer = RegexpTokenizer(r'\w+')
 tokens = tokenizer.tokenize(nohtml)
 print(tokens)
 
+
+#Methods
+
+#method to create a new text file vocab.txt and append the vocab to it
 def writeVocab():
     print('\nCreating a new text file for writing the vocab of webpage to the text file vocab.txt')
     #Name of text file for writing vocab
@@ -52,6 +54,7 @@ def writeVocab():
     
 writeVocab()
 
+#method to create a new text file frequent.txt and append the vocab to it
 print(' \nList most frequent words :\n')
 fdist = FreqDist(tokens)
 mostFrequentWords = fdist.most_common(20)
