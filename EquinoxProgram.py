@@ -4,10 +4,10 @@ Created on Wed Sep 23 16:12:04 2015
 
 @author: Shubham Suzanne
 """
-#The program retrieves the webpage, removes the html content from it, collects 
-#the entire vocabulary and stores it in a text file vocab.txt also it finds the
-#20 most frequents words from the vocab and appends the result to another text 
-#file frequent.txt
+#The program retrieves the webpage, removes  HTML content , collects the 
+#complete vocabulary, and stores it in a text file, vocab.txt.
+#It also collects the 20 most common words and appends the result to 
+#a second text file, frequent.txt
 import nltk
 import urllib
 import sys
@@ -26,6 +26,7 @@ except:
    print("\nCould not open URL: ", url)
    fail = True
 
+#the program is tokenized to remove HTML
 nohtml = BeautifulSoup(page).get_text()
 tokenizer = RegexpTokenizer(r'\w+')
 tokens = tokenizer.tokenize(nohtml)
@@ -34,7 +35,7 @@ print(tokens)
 
 #Methods
 
-#method to create a new text file vocab.txt and append the vocab to it
+#printing the list of words in "vocab.txt"
 def writeVocab():
     print('\nCreating a new text file for writing the vocab of webpage to the text file vocab.txt')
     #Name of text file for writing vocab
@@ -47,6 +48,7 @@ def writeVocab():
         writeToTextFile.write(str(tokens))
         writeToTextFile.close()
         print('File writing completed!\n\n\n')
+        #if it cannot access the file:
     except:
         print('Something went wrong while writing to the file!')
         #quit python
@@ -54,7 +56,7 @@ def writeVocab():
     
 writeVocab()
 
-#method to create a new text file frequent.txt and append the vocab to it
+#retrieving the 20 most frequently found words
 print(' \nList most frequent words :\n')
 fdist = FreqDist(tokens)
 mostFrequentWords = fdist.most_common(20)
